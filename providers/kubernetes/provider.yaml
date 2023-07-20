@@ -39,7 +39,7 @@ options:
     global: true
   DISK_SIZE:
     description: The default size for the persistent volume to use.
-    default: 10Gi
+    default: 5Gi
   BUILDKIT_IMAGE:
     description: The buildkit image to use for building dev containers.
     global: true
@@ -54,11 +54,11 @@ options:
   KUBERNETES_NAMESPACE:
     description: The kubernetes namespace to use
     command: |-
-      NAMESPACE=$(${KUBECTL_PATH} config view --kubeconfig=${KUBERNETES_CONFIG} --context=${KUBERNETES_CONTEXT} --minify -o jsonpath='{..namespace}' 2>/dev/null || true)
-      if [ -z "${NAMESPACE}" ]; then
-        NAMESPACE=devpod
-      fi
-      echo $NAMESPACE
+      # NAMESPACE=$(${KUBECTL_PATH} config view --kubeconfig=${KUBERNETES_CONFIG} --context=${KUBERNETES_CONTEXT} --minify -o jsonpath='{..namespace}' 2>/dev/null || true)
+      # if [ -z "${NAMESPACE}" ]; then
+      #   NAMESPACE=devpod
+      # fi
+      echo "devpod-$(whoami)"
   CREATE_NAMESPACE:
     description: If true, DevPod will try to create the namespace.
     default: "true"
@@ -82,6 +82,7 @@ options:
     global: true
   INACTIVITY_TIMEOUT:
     description: "If defined, will automatically stop the pod after the inactivity period. Examples: 10m, 1h"
+    default: "4h"
   STORAGE_CLASS:
     description: If defined, DevPod will use the given storage class to create the persistent volume claim. You will need to ensure the storage class exists in your cluster!
     global: true
