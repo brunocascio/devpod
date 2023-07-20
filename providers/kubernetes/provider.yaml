@@ -58,7 +58,7 @@ options:
       # if [ -z "${NAMESPACE}" ]; then
       #   NAMESPACE=devpod
       # fi
-      echo "devpod-$(whoami)"
+      echo "pepe"
   CREATE_NAMESPACE:
     description: If true, DevPod will try to create the namespace.
     default: "true"
